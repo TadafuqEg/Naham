@@ -29,6 +29,7 @@ use GuzzleHttp\Client;
 use File;
 use App\Models\Section;
 
+
 class UserController extends Controller
 {
     public function index(Request $request)
