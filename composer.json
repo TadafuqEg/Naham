@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.1",
         "beyondcode/laravel-websockets": "^1.14",
+        "cboden/ratchet": "^0.4.4",
         "google/cloud-firestore": "^1.43",
         "guzzlehttp/guzzle": "^7.8",
         "kreait/firebase-php": "^7.11",
