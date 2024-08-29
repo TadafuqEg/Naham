@@ -65,4 +65,5 @@ class Message extends Model
     {
         $this->attributes['path'] = Crypt::encryptString($value);
     }
+    
 }
