@@ -27,7 +27,7 @@ class WebSocketServer extends Command
                     new Chat()
                 )
             ),
-            443
+            8080
         );
 
         $this->info('WebSocket server started on port 443');
