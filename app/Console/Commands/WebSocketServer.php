@@ -11,7 +11,7 @@ use App\WebSockets\Chat;
 
 class WebSocketServer extends Command
 {
-    protected $signature = 'websocket:init';
+    protected $signature = 'websocket:serve';
     protected $description = 'Start the WebSocket server';
 
     public function __construct()
