@@ -30,7 +30,7 @@ class WebSocketServer extends Command
             443
         );
 
-        $this->info('WebSocket server started on port 8080');
+        $this->info('WebSocket server started on port 443');
         $server->run();
     }
 }
