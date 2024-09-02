@@ -11,7 +11,7 @@ use App\WebSockets\Chat;
 
 class WebSocketServer extends Command
 {
-    protected $signature = 'websocket:init';
+    protected $signature = 'websockets:init';
     protected $description = 'Start the WebSocket server';
 
     public function __construct()
@@ -30,7 +30,7 @@ class WebSocketServer extends Command
             8080
         );
 
-        $this->info('WebSocket server started on port 443');
+        $this->info('WebSocket server started on port 8080');
         $server->run();
     }
 }
