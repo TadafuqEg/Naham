@@ -57,10 +57,10 @@ class Chat implements MessageComponentInterface {
     }
 
     public function onMessage(ConnectionInterface $from, $msg) {
-        $numRecv = count($this->clients) - 1;
+        // $numRecv = count($this->clients) - 1;
         
-        echo sprintf('Connection %d sending message "%s" to %d other connection%s' . "\n"
-            , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's');
+        // echo sprintf('Connection %d sending message "%s" to %d other connection%s' . "\n"
+        //     , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's');
         // $data = json_decode($msg, true);
         // if (array_key_exists('to_user_id', $data)) {
            
