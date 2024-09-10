@@ -15,41 +15,44 @@ class Chat implements MessageComponentInterface {
     public function onOpen(ConnectionInterface $conn) {
         // Store the new connection to send messages to later
         parse_str($conn->httpRequest->getUri()->getQuery(), $queryParams);
+        $this->clients->attach($conn);
 
-        $userId = $queryParams['user_id'] ?? null;
+        //echo "New connection! ({$conn->resourceId})\n";
+        echo "New connection! Connection ID: ({$conn->resourceId})\n";
+        // $userId = $queryParams['user_id'] ?? null;
 
-        $userToken = $queryParams['token'] ?? null;
-        $user = User::where('id', $userId)->first();
+        // $userToken = $queryParams['token'] ?? null;
+        // $user = User::where('id', $userId)->first();
       
 
-        if (!$user) {
-            echo "Invalid user. Connection refused.\n";
-            $conn->close();
-            return;
-        }else{
+        // if (!$user) {
+        //     echo "Invalid user. Connection refused.\n";
+        //     $conn->close();
+        //     return;
+        // }else{
            
-            $tokenParts = explode('|', $userToken);
-            $tokenId = $tokenParts[0];
-            $tokenValue = $tokenParts[1];
+        //     $tokenParts = explode('|', $userToken);
+        //     $tokenId = $tokenParts[0];
+        //     $tokenValue = $tokenParts[1];
             
-            // // Find the token by ID and user
-             $token = $user->tokens()->where('id', $tokenId)->first();
-            // //dd($userToken,$tokenId,$tokenValue,$token->token);
+        //     // // Find the token by ID and user
+        //      $token = $user->tokens()->where('id', $tokenId)->first();
+        //     // //dd($userToken,$tokenId,$tokenValue,$token->token);
             
-            // dd(Crypt::encryptString($tokenValue),$token->token);
-             if ($token && hash('sha256', $tokenValue) ===  $token->token) {
-                // Token matches
-                $this->clients->attach($conn, $userId);
+        //     // dd(Crypt::encryptString($tokenValue),$token->token);
+        //      if ($token && hash('sha256', $tokenValue) ===  $token->token) {
+        //         // Token matches
+        //         $this->clients->attach($conn, $userId);
 
-                //echo "New connection! ({$conn->resourceId})\n";
-                echo "New connection! User ID: {$userId}, Connection ID: ({$conn->resourceId})\n";
-            } else {
-                // Token does not match
-                echo "Token does not match.";
-                $conn->close();
-                return;
-            }
-        }
+        //         //echo "New connection! ({$conn->resourceId})\n";
+        //         echo "New connection! User ID: {$userId}, Connection ID: ({$conn->resourceId})\n";
+        //     } else {
+        //         // Token does not match
+        //         echo "Token does not match.";
+        //         $conn->close();
+        //         return;
+        //     }
+        // }
         
     }
 
