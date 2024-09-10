@@ -70,7 +70,7 @@ class Chat implements MessageComponentInterface {
 
 
         foreach ($this->clients as $client) {
-            if ($from !== $client) {
+            if ($from != $client) {
                 $clientUserId = $this->clients[$client];
             
                 $clientGroupId = User::where('id',intval($clientUserId))->first()->group_id;
