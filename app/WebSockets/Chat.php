@@ -58,22 +58,22 @@ class Chat implements MessageComponentInterface {
         
         echo sprintf('Connection %d sending message "%s" to %d other connection%s' . "\n"
             , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's');
-        $data = json_decode($msg, true);
-        if (array_key_exists('to_user_id', $data)) {
+        // $data = json_decode($msg, true);
+        // if (array_key_exists('to_user_id', $data)) {
            
-            $toUserId = $data['to_user_id'];
-        }
-        if (array_key_exists('to_group_id', $data)) {
+        //     $toUserId = $data['to_user_id'];
+        // }
+        // if (array_key_exists('to_group_id', $data)) {
            
-            $toGroupId = $data['to_group_id'];
-        }
+        //     $toGroupId = $data['to_group_id'];
+        // }
 
 
         foreach ($this->clients as $client) {
             if ($from != $client) {
-                $clientUserId = $this->clients[$client];
+                // $clientUserId = $this->clients[$client];
             
-                $clientGroupId = User::where('id',intval($clientUserId))->first()->group_id;
+                // $clientGroupId = User::where('id',intval($clientUserId))->first()->group_id;
                 $client->send($msg);
                 echo sprintf('Message from user %d sent to user %d' . "\n", $this->clients[$from], $toUserId);
                 // if (array_key_exists('to_user_id', $data)) {
