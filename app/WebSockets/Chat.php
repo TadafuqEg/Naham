@@ -75,7 +75,7 @@ class Chat implements MessageComponentInterface {
             
                 // $clientGroupId = User::where('id',intval($clientUserId))->first()->group_id;
                 $client->send($msg);
-                echo sprintf('Message from user %d sent to user %d' . "\n", $this->clients[$from], $toUserId);
+                echo sprintf('Message from user %d sent to user %d' . "\n", $this->clients[$from], '12');
                 // if (array_key_exists('to_user_id', $data)) {
                     
                 //     if ($clientUserId == $toUserId) {
