@@ -100,7 +100,7 @@ class MessageController extends Controller
             'type' => 'new_message'
         ]);
 
-        broadcast(new MessageSent($message))->toOthers();
+        //broadcast(new MessageSent($message))->toOthers();
         //event(new NotificationDevice($user, $receiver, $message, "new_message", 'you have a new message from ' . $user->name));
     
         
