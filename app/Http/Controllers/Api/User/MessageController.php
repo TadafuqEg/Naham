@@ -72,17 +72,17 @@ class MessageController extends Controller
     
         $receiver = User::find($data['receiver_id']);
         $fcmToken = $receiver->FcmToken??'';
-        $this->sendFirebaseNotification(title:'you have a new message from '.$user->name,notificationBody:[
-            'type' => 'new_message',
-            'message' => $message->message,
-            'sender_id' => $user->id,
-            'sender_uid'=>$user->uid,
-            'sender_name' => $user->name,
-            'sender_email' => $user->email,
-            'receiver_id' => $receiver->id,
-            'receiver_name' => $receiver->name,
-            'receiver_email' => $receiver->email,
-        ],token:$fcmToken,message:$message->message);
+        // $this->sendFirebaseNotification(title:'you have a new message from '.$user->name,notificationBody:[
+        //     'type' => 'new_message',
+        //     'message' => $message->message,
+        //     'sender_id' => $user->id,
+        //     'sender_uid'=>$user->uid,
+        //     'sender_name' => $user->name,
+        //     'sender_email' => $user->email,
+        //     'receiver_id' => $receiver->id,
+        //     'receiver_name' => $receiver->name,
+        //     'receiver_email' => $receiver->email,
+        // ],token:$fcmToken,message:$message->message);
         $data=[
             'title'=>'you have a new message from '.$user->name,
             'message' => $message->message,
