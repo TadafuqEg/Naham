@@ -23,47 +23,6 @@ class Message extends Model
         'updated_at'
     ];
     protected $guarded = [];
-    public function getMessageAttribute($value)
-    {   
-        if($value!=null){
-        return Crypt::decryptString($value);
-        }else{
-            return null;
-        }
-        
-    }
-
-    public function setMessageAttribute($value)
-    {
-        $this->attributes['message'] = Crypt::encryptString($value);
-    }
-
-    public function getLocationLinkAttribute($value)
-    {
-        if($value!=null){
-            return Crypt::decryptString($value);
-            }else{
-                return null;
-            }
-    }
-
-    public function setLocationLinkAttribute($value)
-    {
-        $this->attributes['location_link'] = Crypt::encryptString($value);
-    }
-
-    public function getPathAttribute($value)
-    {
-        if($value!=null){
-            return Crypt::decryptString($value);
-            }else{
-                return null;
-            }
-    }
-
-    public function setPathAttribute($value)
-    {
-        $this->attributes['path'] = Crypt::encryptString($value);
-    }
+    
     
 }
