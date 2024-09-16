@@ -66,7 +66,11 @@ class MessageController extends Controller
         $user = auth('api')->user();
         $data['sender_id'] = $user->id;
         $this->handleFileUpload($request, $data,$user);
-
+        if($request->message!=null){
+            $data['type']='message';
+        }elseif($request->location_link!=null){
+            $data['type']='location';
+        }
         $message = Message::create($data);
         $message->receiver_id = (int)$message->receiver_id;
     
