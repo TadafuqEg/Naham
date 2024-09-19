@@ -40,7 +40,7 @@ class Chat implements MessageComponentInterface {
              if ($token && hash('sha256', $tokenValue) ===  $token->token) {
                 // Token matches
                 $this->clients->attach($conn, $userId);
-                $date_time=date('Y-m-d h:i a');
+                $date_time=date('Y-m-d h:i:s a');
                 //echo "New connection! ({$conn->resourceId})\n";
                 echo "New connection! User ID: {$userId}, Connection ID: ({$conn->resourceId}), {$date_time}\n";
             } else {
@@ -79,7 +79,7 @@ class Chat implements MessageComponentInterface {
                 
                     if ($clientUserId == $toUserId) {
                         $client->send($msg);
-                        $date_time=date('Y-m-d h:i a');
+                        $date_time=date('Y-m-d h:i:s a');
                         echo sprintf('Message "%s" sent from user %d sent to user %d , on %s' . "\n",$msg, $this->clients[$from], $toUserId,$date_time);
                     }
                     
@@ -87,7 +87,7 @@ class Chat implements MessageComponentInterface {
                 
                     if ($clientGroupId == $toGroupId) {
                         $client->send($msg);
-                        $date_time=date('Y-m-d h:i a');
+                        $date_time=date('Y-m-d h:i:s a');
                         echo sprintf('Message "%s" sent from user %d sent to group %d , on %s' . "\n",$msg, $this->clients[$from], $toGroupId,$date_time);
                     }
                    
@@ -110,7 +110,7 @@ class Chat implements MessageComponentInterface {
     public function onClose(ConnectionInterface $conn) {
         // The connection is closed, remove it, as we can no longer send it messages
         $this->clients->detach($conn);
-        $date_time=date('Y-m-d h:i a');
+        $date_time=date('Y-m-d h:i:s a');
         echo "Connection {$conn->resourceId} has disconnected, {$date_time}\n";
     }
 
