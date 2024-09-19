@@ -79,14 +79,16 @@ class Chat implements MessageComponentInterface {
                 
                     if ($clientUserId == $toUserId) {
                         $client->send($msg);
+                        echo sprintf('Message from user %d sent to user %d' . "\n", $this->clients[$from], $toUserId);
                     }
-                    echo sprintf('Message from user %d sent to user %d' . "\n", $this->clients[$from], $toUserId);
+                    
                 }elseif (array_key_exists('to_group_id', $data)) {
                 
                     if ($clientGroupId == $toGroupId) {
                         $client->send($msg);
+                        echo sprintf('Message from user %d sent to group %d' . "\n", $this->clients[$from], $toGroupId);
                     }
-                    echo sprintf('Message from user %d sent to group %d' . "\n", $this->clients[$from], $toGroupId);
+                   
                 }
             }
             
