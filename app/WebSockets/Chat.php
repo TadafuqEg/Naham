@@ -40,7 +40,7 @@ class Chat implements MessageComponentInterface {
              if ($token && hash('sha256', $tokenValue) ===  $token->token) {
                 // Token matches
                 $this->clients->attach($conn, $userId);
-                $date_time=date('Y-m-d H:i:s');
+                $date_time=date('Y-m-d H:i:a');
                 //echo "New connection! ({$conn->resourceId})\n";
                 echo "New connection! User ID: {$userId}, Connection ID: ({$conn->resourceId}), {$date_time}\n";
             } else {
