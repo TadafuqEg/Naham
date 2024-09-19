@@ -40,7 +40,7 @@ class Chat implements MessageComponentInterface {
              if ($token && hash('sha256', $tokenValue) ===  $token->token) {
                 // Token matches
                 $this->clients->attach($conn, $userId);
-                $date_time=date('Y-m-d H:i:a');
+                $date_time=date('Y-m-d h:i a');
                 //echo "New connection! ({$conn->resourceId})\n";
                 echo "New connection! User ID: {$userId}, Connection ID: ({$conn->resourceId}), {$date_time}\n";
             } else {
@@ -106,7 +106,7 @@ class Chat implements MessageComponentInterface {
     public function onClose(ConnectionInterface $conn) {
         // The connection is closed, remove it, as we can no longer send it messages
         $this->clients->detach($conn);
-        $date_time=date('Y-m-d H:i:a');
+        $date_time=date('Y-m-d h:i a');
         echo "Connection {$conn->resourceId} has disconnected, {$date_time}\n";
     }
 
