@@ -56,8 +56,8 @@ class Chat implements MessageComponentInterface {
     public function onMessage(ConnectionInterface $from, $msg) {
         $numRecv = count($this->clients) - 1;
         
-        echo sprintf('Connection %d sending message "%s" to %d other connection%s' . "\n"
-            , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's');
+        // echo sprintf('Connection %d sending message "%s" to %d other connection%s' . "\n"
+        //     , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's');
         $data = json_decode($msg, true);
         if (array_key_exists('to_user_id', $data)) {
            
@@ -79,14 +79,14 @@ class Chat implements MessageComponentInterface {
                 
                     if ($clientUserId == $toUserId) {
                         $client->send($msg);
-                        echo sprintf('Message from user %d sent to user %d' . "\n", $this->clients[$from], $toUserId);
+                        echo sprintf('Message %d sent from user %d sent to user %d' . "\n",$msg, $this->clients[$from], $toUserId);
                     }
                     
                 }elseif (array_key_exists('to_group_id', $data)) {
                 
                     if ($clientGroupId == $toGroupId) {
                         $client->send($msg);
-                        echo sprintf('Message from user %d sent to group %d' . "\n", $this->clients[$from], $toGroupId);
+                        echo sprintf('Message %d sent from user %d sent to group %d' . "\n",$msg, $this->clients[$from], $toGroupId);
                     }
                    
                 }
