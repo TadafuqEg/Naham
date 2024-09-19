@@ -106,7 +106,7 @@ class Chat implements MessageComponentInterface {
     public function onClose(ConnectionInterface $conn) {
         // The connection is closed, remove it, as we can no longer send it messages
         $this->clients->detach($conn);
-        $date_time=date('Y-m-d H:i:s');
+        $date_time=date('Y-m-d H:i:a');
         echo "Connection {$conn->resourceId} has disconnected, {$date_time}\n";
     }
 
