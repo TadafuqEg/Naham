@@ -42,7 +42,7 @@ class Chat implements MessageComponentInterface {
                 $this->clients->attach($conn, $userId);
                 $date_time=date('Y-m-d h:i:s a');
                 //echo "New connection! ({$conn->resourceId})\n";
-                echo "New connection! User ID: {$userId}, Connection ID: ({$conn->resourceId}), {$date_time}\n";
+                echo "[{$date_time}],New connection! User ID: {$userId}, Connection ID: ({$conn->resourceId})\n";
             } else {
                 // Token does not match
                 echo "Token does not match.";
@@ -80,7 +80,7 @@ class Chat implements MessageComponentInterface {
                     if ($clientUserId == $toUserId) {
                         $client->send($msg);
                         $date_time=date('Y-m-d h:i:s a');
-                        echo sprintf('Message "%s" sent from user %d sent to user %d , on %s' . "\n",$msg, $this->clients[$from], $toUserId,$date_time);
+                        echo sprintf('[%s],Message "%s" sent from user %d sent to user %d' . "\n",$date_time,$msg, $this->clients[$from], $toUserId);
                     }
                     
                 }elseif (array_key_exists('to_group_id', $data)) {
@@ -88,7 +88,7 @@ class Chat implements MessageComponentInterface {
                     if ($clientGroupId == $toGroupId) {
                         $client->send($msg);
                         $date_time=date('Y-m-d h:i:s a');
-                        echo sprintf('Message "%s" sent from user %d sent to group %d , on %s' . "\n",$msg, $this->clients[$from], $toGroupId,$date_time);
+                        echo sprintf('[%s],Message "%s" sent from user %d sent to group %d' . "\n",$date_time,$msg, $this->clients[$from], $toGroupId);
                     }
                    
                 }
@@ -111,7 +111,7 @@ class Chat implements MessageComponentInterface {
         // The connection is closed, remove it, as we can no longer send it messages
         $this->clients->detach($conn);
         $date_time=date('Y-m-d h:i:s a');
-        echo "Connection {$conn->resourceId} has disconnected, {$date_time}\n";
+        echo "[{$date_time}],Connection {$conn->resourceId} has disconnected\n";
     }
 
     public function onError(ConnectionInterface $conn, \Exception $e) {
