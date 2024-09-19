@@ -80,7 +80,7 @@ class Chat implements MessageComponentInterface {
                     if ($clientUserId == $toUserId) {
                         $client->send($msg);
                         $date_time=date('Y-m-d h:i a');
-                        echo sprintf('Message "%s" sent from user %d sent to user %d , %d' . "\n",$msg, $this->clients[$from], $toUserId,$date_time);
+                        echo sprintf('Message "%s" sent from user %d sent to user %d , on %s' . "\n",$msg, $this->clients[$from], $toUserId,$date_time);
                     }
                     
                 }elseif (array_key_exists('to_group_id', $data)) {
@@ -88,7 +88,7 @@ class Chat implements MessageComponentInterface {
                     if ($clientGroupId == $toGroupId) {
                         $client->send($msg);
                         $date_time=date('Y-m-d h:i a');
-                        echo sprintf('Message "%s" sent from user %d sent to group %d , %d' . "\n",$msg, $this->clients[$from], $toGroupId,$date_time);
+                        echo sprintf('Message "%s" sent from user %d sent to group %d , on %s' . "\n",$msg, $this->clients[$from], $toGroupId,$date_time);
                     }
                    
                 }
