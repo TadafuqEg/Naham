@@ -92,6 +92,28 @@ class Chat implements MessageComponentInterface {
                     }
                    
                 }
+            }elseif($from == $client && $data['type']=='accept_calling'){
+                $clientUserId = $this->clients[$client];
+            
+                $clientGroupId = User::where('id',intval($clientUserId))->first()->group_id;
+            
+                if (array_key_exists('to_user_id', $data)) {
+                
+                    if ($clientUserId == $toUserId) {
+                        $client->send($msg);
+                        $date_time=date('Y-m-d h:i:s a');
+                        echo sprintf('[ %s ],Message "%s" sent from user %d sent to user %d' . "\n",$date_time,$msg, $this->clients[$from], $toUserId);
+                    }
+                    
+                }elseif (array_key_exists('to_group_id', $data)) {
+                
+                    if ($clientGroupId == $toGroupId) {
+                        $client->send($msg);
+                        $date_time=date('Y-m-d h:i:s a');
+                        echo sprintf('[ %s ],Message "%s" sent from user %d sent to group %d' . "\n",$date_time,$msg, $this->clients[$from], $toGroupId);
+                    }
+                   
+                }
             }
             
         }
