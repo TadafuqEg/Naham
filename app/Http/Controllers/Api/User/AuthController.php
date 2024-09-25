@@ -180,7 +180,7 @@ class AuthController extends Controller
         $group=Group::withCount('users')
         ->withCount(['users as online_users_count' => function ($query) {
             $query->where('is_online', true);
-        }])->first();
+        }])->where('id',$id)->first();
         return $this->success(data:$group);
 
     }
