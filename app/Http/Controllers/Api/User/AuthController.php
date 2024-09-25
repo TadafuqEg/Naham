@@ -162,9 +162,15 @@ class AuthController extends Controller
     }
     public function auth_group(){
        if(auth()->check() && auth()->user()->hasRole('super admin')){
-        $groups=Group::where('section_id',auth('api')->user()->section_id)->get();
+        $groups=Group::withCount('users')
+                        ->withCount(['users as online_users_count' => function ($query) {
+                            $query->where('is_online', true);
+                        }])->where('section_id',auth('api')->user()->section_id)->get();
        }else{
-        $groups=Group::where('id',auth('api')->user()->group_id)->get();
+        $groups=Group::withCount('users')
+                        ->withCount(['users as online_users_count' => function ($query) {
+                            $query->where('is_online', true);
+                        }])->where('id',auth('api')->user()->group_id)->get();
        }
        
        return $this->success(data:$groups);
