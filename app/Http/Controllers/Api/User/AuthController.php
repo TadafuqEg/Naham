@@ -175,5 +175,14 @@ class AuthController extends Controller
        
        return $this->success(data:$groups);
     }
+
+    public function specific_group($id){
+        $group=Group::withCount('users')
+        ->withCount(['users as online_users_count' => function ($query) {
+            $query->where('is_online', true);
+        }])->first();
+        return $this->success(data:$group);
+
+    }
     
 }

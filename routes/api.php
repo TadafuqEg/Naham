@@ -56,6 +56,7 @@ Route::group(['middleware' => ['json.response','cors']], function () {
         Route::get('group_Users','AuthController@group_Users');
         Route::post('update_location', 'AuthController@update_location');
         Route::get('group','AuthController@auth_group');
+        Route::get('specific_group/{id}','AuthController@specific_group');
         
     });
 });
