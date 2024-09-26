@@ -179,7 +179,11 @@ class MessageController extends Controller
         // ini_set('memory_limit', '1000M');
         //set_time_limit(10000000);
         $this->handleFileUpload($request, $data,$user);
-       
+        if($request->message!=null){
+            $data['type']='message';
+        }elseif($request->location_link!=null){
+            $data['type']='location';
+        }
         $data['location_link'] = $request->location_link;
         $data['group_id'] = $request->group_id;
         $data['user_id'] = $user->id;
@@ -227,7 +231,7 @@ class MessageController extends Controller
         if ($message_1->path != null) {
             $message_1->path = url($message_1->path);
         }
-
+        $message_1->time = $message_1->created_at->setTimezone('Africa/Cairo')->format('h:i A');
         return $this->success(data:$message_1);
     }
     public function all_group_message(Request $request){
