@@ -235,7 +235,17 @@ class MessageController extends Controller
         return $this->success(data:$message_1);
     }
     public function all_group_message(Request $request){
-        $messages=GroupMessage::where('group_id',$request->group_id)->with('user:id,name')->get();
+        $messages=GroupMessage::where('group_id',$request->group_id)->orderBy('id','DESC')->with('user:id,name')->paginate(50);
+        foreach ($messages->items() as $msg) {
+            
+            $msg->time = $msg->created_at->setTimezone('Africa/Cairo')->format('h:i A');
+            
+            if($msg->path!=null){
+                $msg->path=url($msg->path);
+            }
+              
+            
+        }
         return $this->success(data:$messages);
     }
 
