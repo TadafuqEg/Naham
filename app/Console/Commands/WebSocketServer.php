@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
+use React\EventLoop\Loop;
 //use MyApp\Chat;
 use App\WebSockets\Chat; 
 
@@ -20,11 +21,11 @@ class WebSocketServer extends Command
     }
 
     public function handle()
-    {
+    {   $loop = Loop::get();
         $server = IoServer::factory(
             new HttpServer(
                 new WsServer(
-                    new Chat()
+                    new Chat($loop)
                 )
             ),
             8080
