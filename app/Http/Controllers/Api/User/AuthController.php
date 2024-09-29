@@ -21,6 +21,7 @@ class AuthController extends Controller
 {
     protected $userService;
 
+    
     public function __construct(UserService $userService)
     {
         $this->userService = $userService;
@@ -173,7 +174,7 @@ class AuthController extends Controller
                         }])->where('id',auth('api')->user()->group_id)->get();
        }
        
-       
+
        return $this->success(data:$groups);
     }
 
