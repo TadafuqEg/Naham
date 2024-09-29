@@ -173,6 +173,7 @@ class AuthController extends Controller
                         }])->where('id',auth('api')->user()->group_id)->get();
        }
        
+       
        return $this->success(data:$groups);
     }
 
